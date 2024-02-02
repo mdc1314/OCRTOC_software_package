@@ -18,8 +18,7 @@ jobs:
     #  run: sh docker/download_thirdparty.sh 
     - name: Build the Docker image
       run: |
-        TAG=$( echo $GITHUB_REF_NAME | sed 's#/#_#g')
-        echo $TAG
         BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-        echo $BRANCH
-    #   sh docker/build.sh ocrtoc:$TAG
+        DOCKER_TAG=echo $BRANCH | sed 's#/#_#g'
+        echo $DOCKER_TAG
+        sh docker/build.sh ocrtoc:$DOCKER_TAG
