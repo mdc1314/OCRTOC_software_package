@@ -19,6 +19,6 @@ jobs:
     - name: Build the Docker image
       run: |
         BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-        DOCKER_TAG=echo $BRANCH | sed 's#/#_#g'
+        DOCKER_TAG= echo "$BRANCH" | sed 's#/#_#g'
         echo $DOCKER_TAG
         sh docker/build.sh ocrtoc:$DOCKER_TAG
