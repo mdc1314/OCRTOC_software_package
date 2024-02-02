@@ -20,4 +20,6 @@ jobs:
       run: |
         TAG=$( echo $GITHUB_REF_NAME | sed 's#/#_#g')
         echo $TAG
-    #    sh docker/build.sh ocrtoc:$TAG
+        BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        echo $BRANCH
+    #   sh docker/build.sh ocrtoc:$TAG
