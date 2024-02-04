@@ -116,7 +116,7 @@ RUN wget --no-check-certificate -qO - https://packages.lunarg.com/lunarg-signing
 
 COPY docker/third_party/sapien_dep /root/workspace/sapien_dep
 RUN cd /root/workspace/sapien_dep  \
-    && unzip -d ./  .zip && rm glfw.zip && cd /glfw \
+    && unzip -d ./  glfw.zip && rm glfw.zip && cd /glfw \
     && mkdir build && cd build && cmake .. && make install -j8\
     && unzip -d ./ spdlog.zip && rm spdlog.zip && cd /spdlog \
     && mkdir build && cd build && cmake .. && make install -j8
@@ -162,11 +162,11 @@ RUN apt -y install libboost-program-options-dev \
     libcgal-dev libcgal-qt5-dev libatlas-base-dev libsuitesparse-dev
 COPY docker/third_party/perception_dep /root
 RUN cd /root && unzip -d ./ ceres-solver.zip && rm ceres-solver.zip \
-    && cd ceres-solver \
+    && cd ceres-solver-2.0.0 \
     && mkdir build && cd build \
     && cmake .. -DBUILD_TESTING=OFF -DBUILD_EXAMPLES=OFF \
     && make -j8 && make install \
-    && cd ../.. && rm -rf ceres-solver \
+    && cd ../.. && rm -rf ceres-solver-2.0.0 \
     && unzip -d ./ colmap.zip && rm colmap.zip \
     && cd colmap \
     && mkdir build && cd build \
