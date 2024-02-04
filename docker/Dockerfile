@@ -119,7 +119,8 @@ COPY docker/third_party/sapien_dep/glfw.zip /root
 
 RUN cd /root \
     && unzip -d ./  glfw.zip && rm glfw.zip && cd glfw-3.3.3 \
-    && mkdir build && cd build && cmake .. && make install -j8\
+    && mkdir build && cd build && cmake .. && make install -j8 \
+    && cd /root \    
     && unzip -d ./ spdlog.zip && rm spdlog.zip && cd spdlog-1.8.5 \
     && mkdir build && cd build && cmake .. && make install -j8 \
     && cd /root && rm -rf spdlog-1.8.5 && rm -rf glfw-3.3.3
