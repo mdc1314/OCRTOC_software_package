@@ -108,15 +108,15 @@ RUN wget --no-check-certificate -qO - https://packages.lunarg.com/lunarg-signing
     && wget --no-check-certificate -qO /etc/apt/sources.list.d/lunarg-vulkan-1.2.170-bionic.list https://packages.lunarg.com/vulkan/1.2.170/lunarg-vulkan-1.2.170-bionic.list \
     && apt-get -o "Acquire::https::Verify-Peer=false" update \
     && apt-get -o "Acquire::https::Verify-Peer=false" install -y vulkan-sdk libglew-dev \
-    && cd /root  && unzip -d ./ assimp.zip && rm assimp.zip && cd assimp &&  mkdir build && cd build \
+    && cd /root  && unzip -d ./ assimp.zip && rm assimp.zip && cd assimp-5.0.1 &&  mkdir build && cd build \
     && cmake .. && make -j 8 && make install \
-    && cd /root && rm -rf assimp && unzip -d ./ glm.zip && rm glm.zip \
-    && cd /glm &&  cp -r glm /usr/local/include \
-    && cd /root && rm -rf glm
+    && cd /root && rm -rf assimp-5.0.1 && unzip -d ./ glm.zip && rm glm.zip \
+    && cd glm-0.9.9.8 &&  cp -r glm /usr/local/include \
+    && cd /root && rm -rf glm-0.9.9.8
 
 COPY docker/third_party/sapien_dep /root/workspace/sapien_dep
 RUN cd /root/workspace/sapien_dep  \
-    && unzip -d ./ glfw.zip && rm glfw.zip && cd /glfw \
+    && unzip -d ./  .zip && rm glfw.zip && cd /glfw \
     && mkdir build && cd build && cmake .. && make install -j8\
     && unzip -d ./ spdlog.zip && rm spdlog.zip && cd /spdlog \
     && mkdir build && cd build && cmake .. && make install -j8
@@ -125,8 +125,6 @@ RUN cd /root/workspace/sapien_dep  \
 # For ocrtoc_common.
 RUN cd /root/workspace  && mkdir -p geometry2_ws
 COPY docker/third_party/perception_dep/geometry2.zip /root/workspace/geometry2_ws
-
-    #git clone -b noetic-devel https://github.com/ros/geometry2.git \
 RUN cd /root/workspace/geometry2_ws  && unzip -d ./ geometry2.zip && rm geometry2.zip \
     && mv geometry2 src \
     && source /opt/ros/noetic/setup.bash \
