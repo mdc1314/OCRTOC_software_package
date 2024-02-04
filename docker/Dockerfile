@@ -101,8 +101,8 @@ RUN python3 -m pip install pybullet==3.2.5 pyquaternion \
 
 
 # Install Sapien dependences.
-COPY /third_party/assimp/assimp.zip /root
-COPY /third_party/glm/glm.zip /root
+COPY docker/third_party/assimp/assimp.zip /root
+COPY docker/third_party/glm/glm.zip /root
 
 RUN wget --no-check-certificate -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | apt-key add - \
     && wget --no-check-certificate -qO /etc/apt/sources.list.d/lunarg-vulkan-1.2.170-bionic.list https://packages.lunarg.com/vulkan/1.2.170/lunarg-vulkan-1.2.170-bionic.list \
@@ -114,7 +114,7 @@ RUN wget --no-check-certificate -qO - https://packages.lunarg.com/lunarg-signing
     && cd /glm &&  cp -r glm /usr/local/include \
     && cd /root && rm -rf glm
 
-COPY /third_party/sapien_dep /root/workspace/sapien_dep
+COPY docker/third_party/sapien_dep /root/workspace/sapien_dep
 RUN cd /root/workspace/sapien_dep  \
     && unzip -d ./ glfw.zip && rm glfw.zip && cd /glfw \
     && mkdir build && cd build && cmake .. && make install -j8\
@@ -124,7 +124,7 @@ RUN cd /root/workspace/sapien_dep  \
 
 # For ocrtoc_common.
 RUN cd /root/workspace  && mkdir -p geometry2_ws
-COPY /third_party/perception_dep/geometry2.zip /root/workspace/geometry2_ws
+COPY docker/third_party/perception_dep/geometry2.zip /root/workspace/geometry2_ws
 
     #git clone -b noetic-devel https://github.com/ros/geometry2.git \
 RUN cd /root/workspace/geometry2_ws  && unzip -d ./ geometry2.zip && rm geometry2.zip \
@@ -162,7 +162,7 @@ RUN apt -y install libboost-program-options-dev \
     libboost-test-dev libeigen3-dev libsuitesparse-dev libfreeimage-dev \
     libgoogle-glog-dev libgflags-dev qtbase5-dev libqt5opengl5-dev \
     libcgal-dev libcgal-qt5-dev libatlas-base-dev libsuitesparse-dev
-COPY /third_party/perception_dep /root
+COPY docker/third_party/perception_dep /root
 RUN cd /root && unzip -d ./ ceres-solver.zip && rm ceres-solver.zip \
     && cd ceres-solver \
     && mkdir build && cd build \
@@ -178,7 +178,7 @@ RUN cd /root && unzip -d ./ ceres-solver.zip && rm ceres-solver.zip \
     && python3 -m pip install pycolmap
 
 # Build Sapien.
-COPY /third_party/sapien_pack /root/workspace/sapien_pack
+COPY docker/third_party/sapien_pack /root/workspace/sapien_pack
 RUN cd /root/workspace/sapien_pack && cp nvidia_icd.json /usr/share/vulkan/icd.d/nvidia_icd.json \
     && source /opt/ros/noetic/setup.bash \
     && cd sapien_ros && python3 setup.py bdist_wheel \
