@@ -110,7 +110,7 @@ RUN wget --no-check-certificate -qO - https://packages.lunarg.com/lunarg-signing
     && apt-get -o "Acquire::https::Verify-Peer=false" install -y vulkan-sdk libglew-dev \
     && cd /root  && unzip -d ./ assimp.zip && rm assimp.zip && cd assimp &&  mkdir build && cd build \
     && cmake .. && make -j 8 && make install \
-    && cd /root && rm -rf assimp && unzip -d ./ glm.zip && rm glm.zip &&\
+    && cd /root && rm -rf assimp && unzip -d ./ glm.zip && rm glm.zip \
     && cd /glm &&  cp -r glm /usr/local/include \
     && cd /root && rm -rf glm
 
