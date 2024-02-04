@@ -114,13 +114,15 @@ RUN wget --no-check-certificate -qO - https://packages.lunarg.com/lunarg-signing
     && cd glm-0.9.9.8 &&  cp -r glm /usr/local/include \
     && cd /root && rm -rf glm-0.9.9.8
 
-COPY docker/third_party/sapien_dep /root/workspace/sapien_dep
-RUN cd /root/workspace/sapien_dep  \
-    && unzip -d ./  glfw.zip && rm glfw.zip && cd /glfw \
-    && mkdir build && cd build && cmake .. && make install -j8\
-    && unzip -d ./ spdlog.zip && rm spdlog.zip && cd /spdlog \
-    && mkdir build && cd build && cmake .. && make install -j8
+COPY docker/third_party/sapien_dep/spdlog.zip /root
+COPY docker/third_party/sapien_dep/glfw.zip /root
 
+RUN cd /root \
+    && unzip -d ./  glfw.zip && rm glfw.zip && cd glfw-3.3.3 \
+    && mkdir build && cd build && cmake .. && make install -j8\
+    && unzip -d ./ spdlog.zip && rm spdlog.zip && cd spdlog-1.8.5 \
+    && mkdir build && cd build && cmake .. && make install -j8 \
+    && cd /root && rm -rf spdlog-1.8.5 && rm -rf glfw-3.3.3
 
 # For ocrtoc_common.
 RUN cd /root/workspace  && mkdir -p geometry2_ws
@@ -168,10 +170,10 @@ RUN cd /root && unzip -d ./ ceres-solver.zip && rm ceres-solver.zip \
     && make -j8 && make install \
     && cd ../.. && rm -rf ceres-solver-2.0.0 \
     && unzip -d ./ colmap.zip && rm colmap.zip \
-    && cd colmap \
+    && cd colmap-3.7 \
     && mkdir build && cd build \
     && cmake .. -DCMAKE_C_COMPILER=/usr/bin/gcc-9 && make -j8 && make install \
-    && cd ../.. && rm -rf colmap \
+    && cd ../.. && rm -rf colmap-3.7 \
     && rm geometry2.zip \
     && python3 -m pip install pycolmap
 

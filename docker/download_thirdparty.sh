@@ -13,6 +13,8 @@ GLM_BINARY=$(pwd)/docker/third_party/glm/glm.zip
 CERES_SOLVER_BINARY=$(pwd)/docker/third_party/perception_dep/ceres-solver.zip
 COLMAP_BINARY=$(pwd)/docker/third_party/perception_dep/colmap.zip
 GEOMETRY2_BINARY=$(pwd)/docker/third_party/perception_dep/geometry2.zip
+SPDLOG_BINARY=$(pwd)/docker/third_party/sapien_dep/spdlog.zip
+GLFW_BINARY=$(pwd)/docker/third_party/sapien_dep/glfw.zip
 
 echo $
 if test -f "$SAPIEN_BINARY"; then
@@ -47,7 +49,39 @@ else
     echo "Download ceres 2.0.0 to $CERES_SOLVER_BINARY"
     curl -L http://ceres-solver.org/ceres-solver-2.0.0.tar.gz -o $CERES_SOLVER_BINARY
 fi
-# download geometry2
+
+# download colmap
+if test -f "$COLMAP_BINARY"; then
+    echo "$COLMAP_BINARY exists. skip downloading"
+else
+    echo "Download colmap 3.7 to $COLMAP_BINARY"
+    curl -L https://github.com/colmap/colmap/archive/refs/tags/3.7.tar.gz -o $CERES_SOLVER_BINARY
+fi
+
+
+if test -f "$COLMAP_BINARY"; then
+    echo "$COLMAP_BINARY exists. skip downloading"
+else
+    echo "Download colmap 3.7 to $COLMAP_BINARY"
+    curl -L https://github.com/colmap/colmap/archive/refs/tags/3.7.tar.gz -o $COLMAP_BINARY
+fi
+
+if test -f "$SPDLOG_BINARY"; then
+    echo "$SPDLOG_BINARY exists. skip downloading"
+else
+    echo "Download spdlog v1.8.5 to $SPDLOG_BINARY"
+    curl -L https://github.com/gabime/spdlog/archive/refs/tags/v1.8.5.zip -o $SPDLOG_BINARY
+fi
+
+if test -f "$GLFW_BINARY"; then
+    echo "$GLFW_BINARY exists. skip downloading"
+else
+    echo "Download glfw 3.3.3 to $GLFW_BINARY"
+    curl -L https://github.com/glfw/glfw/archive/refs/tags/3.3.3.zip -o $GLFW_BINARY
+fi
+
+
+# download geometry2    
 if test -f "$GEOMETRY2_BINARY"; then
     echo "$GEOMETRY2_BINARY exists. skip downloading"
 else
