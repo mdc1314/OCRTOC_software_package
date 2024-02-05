@@ -126,7 +126,7 @@ RUN cd /root \
     && cd /root && rm -rf spdlog-1.8.5 && rm -rf glfw-3.3.3
 
 # For ocrtoc_common.
-RUN cd /root/workspace  && mkdir -p geometry2_ws
+RUN cd /root && mkdir -p workspace && cd /workspace  && mkdir -p geometry2_ws
 COPY docker/third_party/perception_dep/geometry2.zip /root/workspace/geometry2_ws
 RUN cd /root/workspace/geometry2_ws  && unzip -d ./ geometry2.zip && rm geometry2.zip \
     && mv geometry2-noetic-devel src \
