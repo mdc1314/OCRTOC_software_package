@@ -164,7 +164,10 @@ RUN apt -y install libboost-program-options-dev \
     libboost-test-dev libeigen3-dev libsuitesparse-dev libfreeimage-dev \
     libgoogle-glog-dev libgflags-dev qtbase5-dev libqt5opengl5-dev \
     libcgal-dev libcgal-qt5-dev libatlas-base-dev libsuitesparse-dev
-COPY docker/third_party/perception_dep /root
+
+COPY docker/third_party/perception_dep/ceres-solver.zip /root
+COPY docker/third_party/perception_dep/colmap.zip /root
+
 RUN cd /root && unzip -d ./ ceres-solver.zip && rm ceres-solver.zip \
     && cd ceres-solver-2.0.0 \
     && mkdir build && cd build \
@@ -176,7 +179,6 @@ RUN cd /root && unzip -d ./ ceres-solver.zip && rm ceres-solver.zip \
     && mkdir build && cd build \
     && cmake .. -DCMAKE_C_COMPILER=/usr/bin/gcc-9 && make -j8 && make install \
     && cd ../.. && rm -rf colmap-3.7 \
-    && rm geometry2.zip \
     && python3 -m pip install pycolmap
 
 # Build Sapien.
