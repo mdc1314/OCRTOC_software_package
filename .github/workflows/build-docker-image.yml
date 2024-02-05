@@ -17,11 +17,8 @@ jobs:
       run: |
         sudo rm -rf /usr/share/dotnet
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-        sudo rm -rf /opt/hostedtoolcache
-    - name: Run foo
-        uses: docker://foo-image
-        with: 
-          args: /foo-script
+    - name: free disk space
+      run: sh docker/free_disk_space.sh 
     - name: Checkout
       uses: actions/checkout@v3
     - name: Download third party
