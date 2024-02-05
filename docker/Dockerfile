@@ -127,8 +127,8 @@ RUN cd /root \
 
 # For ocrtoc_common.
 RUN cd /root/workspace  && mkdir -p geometry2_ws
-COPY docker/third_party/perception_dep/geometry2-noetic-devel.zip /root/workspace/geometry2_ws
-RUN cd /root/workspace/geometry2_ws  && unzip -d ./ geometry2-noetic-devel.zip && rm geometry2-noetic-devel.zip \
+COPY docker/third_party/perception_dep/geometry2.zip /root/workspace/geometry2_ws
+RUN cd /root/workspace/geometry2_ws  && unzip -d ./ geometry2.zip && rm geometry2.zip \
     && mv geometry2-noetic-devel src \
     && source /opt/ros/noetic/setup.bash \
     && pip install transforms3d \
@@ -164,13 +164,13 @@ RUN apt -y install libboost-program-options-dev \
     libgoogle-glog-dev libgflags-dev qtbase5-dev libqt5opengl5-dev \
     libcgal-dev libcgal-qt5-dev libatlas-base-dev libsuitesparse-dev
 COPY docker/third_party/perception_dep /root
-RUN cd /root && unzip -d ./ ceres-solver-2.0.0.tar.gz && rm ceres-solver-2.0.0.tar.gz \
+RUN cd /root && unzip -d ./ ceres-solver.zip && rm ceres-solver.zip \
     && cd ceres-solver-2.0.0 \
     && mkdir build && cd build \
     && cmake .. -DBUILD_TESTING=OFF -DBUILD_EXAMPLES=OFF \
     && make -j8 && make install \
     && cd ../.. && rm -rf ceres-solver-2.0.0 \
-    && unzip -d ./ colmap-3.7.tar.gz && rm colmap-3.7.tar.gz \
+    && unzip -d ./ colmap.zip && rm colmap.zip \
     && cd colmap-3.7 \
     && mkdir build && cd build \
     && cmake .. -DCMAKE_C_COMPILER=/usr/bin/gcc-9 && make -j8 && make install \
