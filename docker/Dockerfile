@@ -153,7 +153,7 @@ RUN python3 -m pip install pip --upgrade \
     && python3 -m pip install imageio==2.5.0 pypng==0.0.20 \
          PyOpenGL==3.1.0 \
          triangle==20190115.2 glumpy==1.1.0 \
-          Pillow==7.2.0 rtree 
+         Pillow==7.2.0 rtree 
     # && python3 -m pip --default-timeout=1000000000 install torch==1.8.2+cu111 torchvision==0.9.2+cu111 \
     #  -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
 
@@ -195,6 +195,3 @@ RUN cd /root/workspace/sapien_pack && cp nvidia_icd.json /usr/share/vulkan/icd.d
 #     && rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
-# RUN  python3 -m pip --default-timeout=1000000000 install torch==1.8.2+cu111 torchvision==0.9.2+cu111  \ 
-#       -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
-#
