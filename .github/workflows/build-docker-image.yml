@@ -17,7 +17,7 @@ jobs:
       run: |
         sudo rm -rf /usr/share/dotnet
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-    - name: free disk space
+    - name: Free disk space
       run: sh docker/free_disk_space.sh 
     - name: Checkout
       uses: actions/checkout@v3
