@@ -16,7 +16,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     # Install gl/x package for visualization inside docker
     && apt-get install -y libglvnd0 libgl1 libglx0 libegl1 libxext6 libx11-6 \
     # # Install gcc9
-    && add-apt-repository -y ppa:ubuntu-toolchain-r/test && apt-get update \
+    # && add-apt-repository -y ppa:ubuntu-toolchain-r/test \
+    # && apt-get update \
     && apt install -y gcc-9 g++-9 \
     # Install cmake 3.16.3
     && cd /root && wget --no-check-certificate https://cmake.org/files/v3.16/cmake-3.16.3.tar.gz \
