@@ -50,15 +50,8 @@ else
     curl -L http://ceres-solver.org/ceres-solver-2.0.0.tar.gz -o $CERES_SOLVER_BINARY
 fi
 
+
 # download colmap
-if test -f "$COLMAP_BINARY"; then
-    echo "$COLMAP_BINARY exists. skip downloading"
-else
-    echo "Download colmap 3.7 to $COLMAP_BINARY"
-    curl -L https://github.com/colmap/colmap/archive/refs/tags/3.7.tar.gz -o $CERES_SOLVER_BINARY
-fi
-
-
 if test -f "$COLMAP_BINARY"; then
     echo "$COLMAP_BINARY exists. skip downloading"
 else

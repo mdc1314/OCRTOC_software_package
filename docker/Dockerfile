@@ -165,7 +165,9 @@ RUN apt -y install libboost-program-options-dev \
     libgoogle-glog-dev libgflags-dev qtbase5-dev libqt5opengl5-dev \
     libcgal-dev libcgal-qt5-dev libatlas-base-dev libsuitesparse-dev
 
-COPY docker/third_party/perception_dep /root
+COPY docker/third_party/perception_dep/ceres-solver.tar.gz /root
+COPY docker/third_party/perception_dep/colmap.tar.gz /root
+
 RUN cd /root && tar -xf ceres-solver.tar.gz -C ./ && rm ceres-solver.tar.gz \
     && cd ceres-solver-2.0.0 \
     && mkdir build && cd build \
