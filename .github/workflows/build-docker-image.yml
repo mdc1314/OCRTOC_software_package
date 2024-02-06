@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ "master" ]
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ocrtoc2024
-
 jobs:
 
   build:
@@ -57,53 +53,7 @@ jobs:
           docker load --input /tmp/ocrtoc2024_image.tar
           docker build --file docker/Dockerfile_pytorch --tag ocrtoc2024:1 .      
     
-    # - uses: actions/checkout@v3
-    # - name: Restore cached package
-    #   uses: actions/cache/restore@v4
-    #   with:
-    #     path: ocrtoc2024_image.tar
-    #     key: ocrtoc_without_pytorch
-    # - name: Extract docker image
-    #   run: docker load --input ocrtoc2024_image.tar
-    # - name: Build pytorch
-    #   run: docker build --file Dockerfile_pytorch --tag ocrtoc2024:1 .
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
