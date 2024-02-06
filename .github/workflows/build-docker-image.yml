@@ -32,7 +32,8 @@ jobs:
     - name: Build and export
       uses: docker/build-push-action@v5
       with:
-        context: -f docker/Dockerfile .
+        context: .
+        file: docker/Dockerfile 
         tags: ocrtoc2024:0
         outputs: type=docker,dest=/tmp/ocrtoc2024_image.tar
     - name: Upload artifact
