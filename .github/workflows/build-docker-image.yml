@@ -25,4 +25,27 @@ jobs:
       run: |
         BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
         DOCKER_TAG= echo "$BRANCH" | sed 's#/#_#g'
-        docker build -f docker/Dockerfile -t ocrtoc2024 .
+        docker build -f docker/Dockerfile -t ocrtoc2024:0 .
+    - name: Contract docker image
+      run: docker save ocrtoc2024:0 > ocrtoc2024_image.tar
+    - name: Cache packages
+      uses: actions/cache/save@v4
+      with:
+        path: ocrtoc2024_image.tar
+        key : ocrtoc_without_pytorch
+
+
+  build_pytorch:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Restore cached package
+      uses: actions/cache/restore@v4
+      with:
+        path: ocrtoc2024_image.tar
+        key: ocrtoc_without_pytorch
+    - name: Extract docker image
+      run: docker load --input ocrtoc2024_image.tar
+    - name: Build pytorch
+      run: docker build . --file Dockerfile_pytorch --tag ocrtoc2024:1 
