@@ -179,7 +179,6 @@ RUN cd /root && tar -xf ceres-solver.tar.gz -C ./ && rm ceres-solver.tar.gz \
     && mkdir build && cd build \
     && cmake .. -DCMAKE_C_COMPILER=/usr/bin/gcc-9 && make -j8 && make install \
     && cd ../.. && rm -rf colmap-3.7 \
-    && rm geometry2.zip \
     && python3 -m pip install pycolmap
 
 # Build Sapien.
