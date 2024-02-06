@@ -46,15 +46,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-     - name: Download artifact
+      - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: ocrtoc2024
           path: /tmp
-    - name: Load image
-      run: |
-        docker load --input /tmp/ocrtoc2024_image.tar
-        docker build --file Dockerfile_pytorch --tag ocrtoc2024:1 .      
+      - name: Load image
+        run: |
+          docker load --input /tmp/ocrtoc2024_image.tar
+          docker build --file Dockerfile_pytorch --tag ocrtoc2024:1 .      
     
     # - uses: actions/checkout@v3
     # - name: Restore cached package
