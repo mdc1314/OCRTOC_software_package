@@ -6,46 +6,156 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ocrtoc2024
+
 jobs:
 
   build:
 
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      packages: write
     steps:
     - name: Remove unnecessary files
       run: |
         sudo rm -rf /usr/share/dotnet
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Download third party
       run: sh docker/download_thirdparty.sh 
-    - name: Build the Docker image
-      run: |
-        BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-        DOCKER_TAG= echo "$BRANCH" | sed 's#/#_#g'
-        docker build -f docker/Dockerfile -t ocrtoc2024:0 .
-    - name: Contract docker image
-      run: docker save ocrtoc2024:0 > ocrtoc2024_image.tar
-    - name: Cache packages
-      uses: actions/cache/save@v4
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Build and export
+      uses: docker/build-push-action@v5
       with:
-        path: ocrtoc2024_image.tar
-        key : ocrtoc_without_pytorch
-
+        context: .
+        tags: ocrtoc2024:0
+        outputs: type=docker,dest=/tmp/ocrtoc2024_image.tar
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ocrtoc2024
+        path: /tmp/ocrtoc2024_image.tar
+  
 
   build_pytorch:
-    needs: build
     runs-on: ubuntu-latest
+    needs: build
     steps:
-    - uses: actions/checkout@v3
-    - name: Restore cached package
-      uses: actions/cache/restore@v4
-      with:
-        path: ocrtoc2024_image.tar
-        key: ocrtoc_without_pytorch
-    - name: Extract docker image
-      run: docker load --input ocrtoc2024_image.tar
-    - name: Build pytorch
-      run: docker build --file Dockerfile_pytorch --tag ocrtoc2024:1 .
+     - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ocrtoc2024
+          path: /tmp
+    - name: Load image
+      run: |
+        docker load --input /tmp/ocrtoc2024_image.tar
+        docker build --file Dockerfile_pytorch --tag ocrtoc2024:1 .      
+    
+    # - uses: actions/checkout@v3
+    # - name: Restore cached package
+    #   uses: actions/cache/restore@v4
+    #   with:
+    #     path: ocrtoc2024_image.tar
+    #     key: ocrtoc_without_pytorch
+    # - name: Extract docker image
+    #   run: docker load --input ocrtoc2024_image.tar
+    # - name: Build pytorch
+    #   run: docker build --file Dockerfile_pytorch --tag ocrtoc2024:1 .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# name: Docker Image CI
+
+# on:
+#   push:
+#     branches: [ "master" ]
+#   pull_request:
+#     branches: [ "master" ]
+
+# jobs:
+
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Remove unnecessary files
+#       run: |
+#         sudo rm -rf /usr/share/dotnet
+#         sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+#     - name: Checkout
+#       uses: actions/checkout@v3
+#     - name: Download third party
+#       run: sh docker/download_thirdparty.sh 
+#     - name: Build the Docker image
+#       run: |
+#         BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+#         DOCKER_TAG= echo "$BRANCH" | sed 's#/#_#g'
+#         docker build -f docker/Dockerfile -t ocrtoc2024:0 .
+#     - name: Contract docker image
+#       run: docker save ocrtoc2024:0 > ocrtoc2024_image.tar
+#     - name: Cache packages
+#       uses: actions/cache/save@v4
+#       with:
+#         path: ocrtoc2024_image.tar
+#         key : ocrtoc_without_pytorch
+
+
+#   build_pytorch:
+#     needs: build
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Restore cached package
+#       uses: actions/cache/restore@v4
+#       with:
+#         path: ocrtoc2024_image.tar
+#         key: ocrtoc_without_pytorch
+#     - name: Extract docker image
+#       run: docker load --input ocrtoc2024_image.tar
+#     - name: Build pytorch
+#       run: docker build --file Dockerfile_pytorch --tag ocrtoc2024:1 .
