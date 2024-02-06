@@ -48,4 +48,4 @@ jobs:
     - name: Extract docker image
       run: docker load --input ocrtoc2024_image.tar
     - name: Build pytorch
-      run: docker build . --file Dockerfile_pytorch --tag ocrtoc2024:1 
+      run: docker build --file Dockerfile_pytorch --tag ocrtoc2024:1 .
