@@ -54,7 +54,7 @@ jobs:
       - name: Load image
         run: |
           docker load --input /tmp/ocrtoc2024_image.tar
-          docker build --file Dockerfile_pytorch --tag ocrtoc2024:1 .      
+          docker build --file docker/Dockerfile_pytorch --tag ocrtoc2024:1 .      
     
     # - uses: actions/checkout@v3
     # - name: Restore cached package
