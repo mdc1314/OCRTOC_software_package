@@ -1,15 +1,15 @@
 [submodule "ocrtoc_planning/scripts/pddlstream"]
 	path = ocrtoc_planning/scripts/pddlstream
 	url = https://github.com/caelan/pddlstream.git
-	branch = stable
+	branch = main
 [submodule "drivers/franka_ros"]
 	path = drivers/franka_ros
 	url = https://github.com/frankaemika/franka_ros.git
-	branch = melodic-devel
+	branch = noetic-devel
 [submodule "drivers/Azure_Kinect_ROS_Driver"]
 	path = drivers/Azure_Kinect_ROS_Driver
 	url = https://github.com/microsoft/Azure_Kinect_ROS_Driver.git
-	branch = melodic
+	branch = noetic
 [submodule "drivers/realsense-ros"]
 	path = drivers/realsense-ros
 	url = https://github.com/IntelRealSense/realsense-ros.git
