@@ -20,9 +20,9 @@ cd ../knn
 python3 setup.py install --install-lib /usr/lib/python3/dist-packages
 
 # # install package for pddlstream
- roscd ocrtoc_planning/scripts/pddlstream
+roscd ocrtoc_planning/scripts/pddlstream
 # ./FastDownward/build.py release64
 ./downward/build.py
 # update-alternatives --set gcc /usr/bin/gcc-9
 
- source /root/ocrtoc_ws/devel/setup.bash
+source /root/ocrtoc_ws/devel/setup.bash
