@@ -9,8 +9,8 @@
 [submodule "drivers/Azure_Kinect_ROS_Driver"]
 	path = drivers/Azure_Kinect_ROS_Driver
 	url = https://github.com/microsoft/Azure_Kinect_ROS_Driver.git
-	branch = noetic
+	branch = melodic
 [submodule "drivers/realsense-ros"]
 	path = drivers/realsense-ros
 	url = https://github.com/IntelRealSense/realsense-ros.git
-	branch = development
+	branch = ros1_legacy
