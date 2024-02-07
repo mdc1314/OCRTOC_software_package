@@ -196,6 +196,8 @@ You can try out some interfaces using the following scripts.
 ```bash
 # In the first terminal
 bash tools/exec_container.sh
+cd root/ocrtoc_ws/
+source devel/setup.bash
 
 # In the docker image
 roslaunch ocrtoc_task bringup_simulator_pybullet.launch task_index:=0-0
@@ -204,9 +206,11 @@ roslaunch ocrtoc_task bringup_simulator_pybullet.launch task_index:=0-0
 ```bash
 # In the second terminal
 bash tools/exec_container.sh
+cd root/ocrtoc_ws/
+source devel/setup.bash
 
 # In the docker image
-roslaunch panda_moveit_config ocrtoc.launchAp
+roslaunch panda_moveit_config ocrtoc.launch
 ```
 
 ```bash
@@ -236,6 +240,8 @@ The steps are similar to running [baseline solution](#baseline_solution). The on
 # Run the same program in the first two terminals.
 # In the third terminal
 bash tools/exec_container.sh
+cd root/ocrtoc_ws/
+source devel/setup.bash
 
 # In the docker image
 # Start the trigger and start the task
