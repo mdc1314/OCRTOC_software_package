@@ -1,5 +1,7 @@
 # Open Cloud Robot Table Organization Challenge 2024 (OCRTOC) 
 
+![](docs/logo.png)
+
 ## Overview
 This is the OCRTOC software package. The homepage for OCRTOC is: [www.ocrtoc.org](http://www.ocrtoc.org). A brief video introduction about OCRTOC is available on [Youtube](https://www.youtube.com/watch?v=9dlWUbPF2Cc&t=1s) and [BiliBili](https://www.bilibili.com/video/BV1MV411W7aa/).
 
@@ -24,7 +26,7 @@ In order for your solution to be executable both on your local machine and our c
 - NVIDIA container runtime must be installed ([https://www.celantur.com/blog/run-cuda-in-docker-on-linux/](https://www.celantur.com/blog/run-cuda-in-docker-on-linux/))
 - Ubuntu 22.04 are tested and recommended, other Linux distribution may also work.
 
-### Clone the Repository (links need to be changed)
+### Clone the Repository 
 
 There are some submodules in the software package, and you need to clone the repository recursively.
 
@@ -152,7 +154,7 @@ Since some packages are not used in simulation phase, we created symbolic links 
 
 ### Interfaces
 
-#### ROS Topics
+#### ROS Topics 
 You can read from or write to ROS topics to interact with the robot (for both real robot and simulation). To develop your own solution, you can use the following topics. These topics share the same names in both simulation and real robot hardware. With this consistency, a solution that is developed in simulation can be evaluated on the real robot hardware as well.
 - /tf
     - world
@@ -162,7 +164,7 @@ You can read from or write to ROS topics to interact with the robot (for both re
     - rgb_camera_link
 - /franka_gripper/gripper_action/goal (**This is the distance from one finger-tip to the center of both fingers (in meter)**)
 - /position_joint_trajectory_controller/follow_joint_trajectory/goal
-- /kinect/
+- /kinect/ 
     - /kinect/depth_to_color/image_raw
     - /kinect/color/camera_info
     - /kinect/color/image_rect_color
@@ -275,11 +277,39 @@ catkin_make
 docker commit ocrtoc your_submission_docker_image_name # ocrtoc is the container name. Make changes according to your needs.
 ```
 
-3. Submit Your Docker Image
+3. Submit Your Docker Image (Tentitive)
 
 You can upload your docker image to any platform that can be accessed by us, e.g. Docker Hub.
 
-### Final Submission (This section need to be changed)
+## Video Tutorial 
+To give you a more intuitive impression on how to use the whole OCRTOC software package, the following video tutorials are provided:
+- Software package:  [Youtube](https://www.youtube.com/watch?v=WRdUDNuTZ_0), [BiliBili](https://www.bilibili.com/video/BV1EB4y1T7jK/).
+- Program execution and baseline solution:  [Youtube](https://www.youtube.com/watch?v=FT6-bDch258), [BiliBili](https://www.bilibili.com/video/BV1Cq4y1s7Fp/).
+- Submission:  [Youtube](https://www.youtube.com/watch?v=ghslvJfp_Ys), [BiliBili](https://www.bilibili.com/video/BV1AX4y1w7UN/).
+- Dataset:  [Youtube](https://www.youtube.com/watch?v=PGvtBTyZqhU), [BiliBili](https://www.bilibili.com/video/BV14L411p7kK/).
+
+
+## Frequently Asked Question (FAQ)
+
+Frequently asked questions are available in [`FAQ.md`](FAQ.md).
+
+## Citation
+If you find our work helpful, please cite the following paper: [https://arxiv.org/pdf/2104.11446.pdf](https://arxiv.org/pdf/2104.11446.pdf)
+```bibtex
+@misc{liu2021ocrtoc,
+title={OCRTOC: A Cloud-Based Competition and Benchmark for Robotic Grasping and Manipulation},
+author={Ziyuan Liu and Wei Liu and Yuzhe Qin and Fanbo Xiang and Minghao Gou and Songyan Xin and Maximo A. Roa and Berk Calli and Hao Su and Yu Sun and Ping Tan},
+year={2021},
+eprint={2104.11446},
+archivePrefix={arXiv},
+primaryClass={cs.RO}
+}
+```
+
+## Technical Support
+If you encounter technical issues regarding this software package, please contact us at [info@ocrtoc.org](mailto://info@ocrtoc.org) or raise a github issue.
+
+### Final Submission (Legacy)
 For the final submission, you need to fill out a yaml file and email it to [info@ocrtoc.org](mailto://info@ocrtoc.org). In the following, an example of this yaml file is provided. Please pay attention that if your docker image is private, you need to provide the username and password so that we can pull the docker image.
 
 ```yaml
@@ -309,7 +339,7 @@ docker:
 ```
 
 
-## Labelled Dataset (Real World)
+## Labelled Dataset (Legacy) 
 To ease your development process we provide a labelled real world dataset. To use this dataset you need to download the toolkit from [https://github.com/OCRTOC/OCRTOC_dataset_toolkit](https://github.com/OCRTOC/OCRTOC_dataset_toolkit).
 
 In this dataset, a lot of scenes with multiple objects are scanned using a wrist-mounted real sense D435i camera. Each scene is captured from 79 different perspective. For each scene, the per-scene object poses are labelled. The per-scene object poses are used to generate the per-frame object poses and 2D object masks for each rgbd image. Object models are available at [`ocrtoc_materials/models`](/ocrtoc_materials/models). We will continueously extend this dataset. Till July 1st, 2021, the statistics of this dataset is as follows:
@@ -318,36 +348,7 @@ In this dataset, a lot of scenes with multiple objects are scanned using a wrist
 - Number of used objects: 33
 - Number of labelled RGB-D images: 6004
 
-## Video Tutorial
-To give you a more intuitive impression on how to use the whole OCRTOC software package, the following video tutorials are provided:
-- Software package:  [Youtube](https://www.youtube.com/watch?v=WRdUDNuTZ_0), [BiliBili](https://www.bilibili.com/video/BV1EB4y1T7jK/).
-- Program execution and baseline solution:  [Youtube](https://www.youtube.com/watch?v=FT6-bDch258), [BiliBili](https://www.bilibili.com/video/BV1Cq4y1s7Fp/).
-- Submission:  [Youtube](https://www.youtube.com/watch?v=ghslvJfp_Ys), [BiliBili](https://www.bilibili.com/video/BV1AX4y1w7UN/).
-- Dataset:  [Youtube](https://www.youtube.com/watch?v=PGvtBTyZqhU), [BiliBili](https://www.bilibili.com/video/BV14L411p7kK/).
-
-
-## Frequently Asked Question (FAQ)
-
-Frequently asked questions are available in [`FAQ.md`](FAQ.md).
-
-## Citation
-If you find our work helpful, please cite the following paper: [https://arxiv.org/pdf/2104.11446.pdf](https://arxiv.org/pdf/2104.11446.pdf)
-```bibtex
-@misc{liu2021ocrtoc,
-title={OCRTOC: A Cloud-Based Competition and Benchmark for Robotic Grasping and Manipulation},
-author={Ziyuan Liu and Wei Liu and Yuzhe Qin and Fanbo Xiang and Minghao Gou and Songyan Xin and Maximo A. Roa and Berk Calli and Hao Su and Yu Sun and Ping Tan},
-year={2021},
-eprint={2104.11446},
-archivePrefix={arXiv},
-primaryClass={cs.RO}
-}
-```
-
-## Technical Support
-If you encounter technical issues regarding this software package, please contact us at [info@ocrtoc.org](mailto://info@ocrtoc.org) or raise a github issue.
-
-
-## OCRTOC Fan Group
+## OCRTOC Fan Group (Legacy)
 You can also join our fan group on [Slack](https://ocrtoc.slack.com/join/shared_invite/zt-se6z93pf-Wra_ZMG2Oi63i9LzUpjiEw#/shared-invite/email) to give us feedbacks and stay tuned.
 
 
