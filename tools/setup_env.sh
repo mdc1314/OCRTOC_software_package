@@ -25,3 +25,7 @@ roscd ocrtoc_planning/scripts/pddlstream
 # update-alternatives --set gcc /usr/bin/gcc-9
 
 source /root/ocrtoc_ws/devel/setup.bash
+
+# generate bounding boxes for evaluation
+roscd ocrtoc_perception/src/ocrtoc_perception/pose
+python3 bbox_generation.py
