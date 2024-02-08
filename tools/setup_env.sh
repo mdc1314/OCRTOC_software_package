@@ -1,8 +1,7 @@
-# # checkout realsense driver
-# cd /root/ocrtoc_ws/src/drivers/realsense-ros
-# git checkout 2.3.0
+# Install Pytorch 
+python3 -m pip --default-timeout=1000000000 install torch==1.8.2+cu111 torchvision==0.9.2+cu111 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
 
-# rebuild ocrtoc ros
+# Rebuild ocrtoc ros
 cd /root/ocrtoc_ws/
 rm -rf build devel
 catkin_make -j 8
