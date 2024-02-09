@@ -16,7 +16,7 @@ class TransformInterface(object):
         self.tfBuffer = tf2_ros.Buffer()
         self.listener = tf2_ros.TransformListener(self.tfBuffer)
 
-    def lookup_ros_transform(self, parent_frame, child_frame, timeout=1.0):
+    def lookup_ros_transform(self, parent_frame, child_frame, timeout=1.2):
         try:
             transform = self.tfBuffer.lookup_transform(parent_frame,
                                                        child_frame,
@@ -27,7 +27,7 @@ class TransformInterface(object):
             rospy.logerr(e)
             return None
 
-    def lookup_numpy_transform(self, parent_frame, child_frame, timeout=1.0):
+    def lookup_numpy_transform(self, parent_frame, child_frame, timeout=1.2):
         transform = self.lookup_ros_transform(parent_frame,
                                               child_frame,
                                               timeout)
