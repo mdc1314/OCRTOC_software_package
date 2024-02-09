@@ -213,6 +213,8 @@ roslaunch panda_moveit_config ocrtoc.launch
 ```bash
 # In the third terminal
 bash tools/exec_container.sh
+cd root/ocrtoc_ws/
+source devel/setup.bash
 
 # In the docker image
 roscd ocrtoc_common/test
