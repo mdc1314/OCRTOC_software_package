@@ -11,10 +11,13 @@ For the simulation stage, we support two simulators: PyBullet with ROS and Mujoc
 
 For the real robot stage, your solution will be tested on real robot hardware. The software interfaces for sensor readings and robot control are the same for both simulation and the real robot hardware. So you will not encounter interface issues when transferring your solution from simulation to the real robot.
 
-The structure of the system is shown in the figure below.
+The structure of the Pybullet-ROS system is shown in the figure below.
 
 ![](docs/data_flow.png)
 
+The structure of the Mujoco-Gymnasium system is shown in the figure below.
+
+![](docs/mujoco_structure.png)
 
 ## Set up Environment
 In order for your solution to be executable both on your local machine and our competition platform, we provide you a docker image with some pre-installed software. You need to develop and test your solution within this docker image. To set up the environment, you can use the pre-built docker image. The following instructions provide more details.
@@ -161,7 +164,7 @@ roslaunch ocrtoc_task trigger.launch task_index:=0-0
 ```
 
 ### Mujoco
-We provide a solution using keyboard to control the robot end effector. In the following we show an example on how to run it in the Mujoco simulator on your local machine.
+We provide a solution using keyboard to control the robot. In the following we show how to run it in the Mujoco simulator on your local machine.
 ```bash
 # Enter the docker container
 bash tools/exec_container.sh
@@ -254,13 +257,12 @@ For debugging purposes, you can read the object 6D poses in simulation via `/get
 However, you should **NEVER READ THE OBJECT 6D POSES DIRECTLY FROM SIMULATION IN YOUR SOLUTION**. Violation of the rule will result in invalid scores. 
 
 ### Mujoco
-The OCRTOC Challenge for Mujoco user is built upon Gymnasium. The general framework of challenge consists of two compoents, i.e. Agent and Env. You should build an agent `MyAgent` to interacts with ocrtoc environment. We provide a base class AgentBase with some variable. You can inherit the base class to your class MyAgent and implement your onw method in the `ocrtoc_gym/ocrtoc_agent/agent_builder.py` file. You can change parameters in `agent_config.yml` for testing process. 
-You can run this script to test your agent.
+The OCRTOC for Mujoco user is built upon Gymnasium. The general framework of challenge consists of two compoents, i.e. Agent and Env. You should build an agent `MyAgent` to interacts with ocrtoc environment. We provide a base class AgentBase with some variable. You can inherit the base class to your class MyAgent and implement your onw method in the `ocrtoc_gym/ocrtoc_agent/agent_builder.py` file. You can change parameters in `agent_config.yml` and run this script for testing process. 
 ```bash
 # In the terminal
 Python3 run.py
 ```
-You should **ONLY READ DATA FROM OBSERVATION**. Violation of the rule will result in invalid scores. 
+
 
 ## Evaluation
 
