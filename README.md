@@ -117,7 +117,18 @@ bash setup_env.sh
 ```
 
 #### Mujoco user
-The environment in Mujoco is already set up. You can pass this step.
+You need to run the following commands to download required materials for Mujoco.
+
+However, you don't need to run them when you restart the docker container. 
+
+```bash
+# Enter the docker container
+bash tools/exec_container.sh
+
+## In the docker image
+cd /root/ocrtoc_ws
+bash tools/setup_env_mujoco.sh
+```
 
 Now you have finished setting up the environment, and you can try to run the baseline solution.
 
