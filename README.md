@@ -376,7 +376,7 @@ info:
 evalution:
     # Participate in the 'Simulation' or 'Real Robot' branch? [sim | real | both]
     branch: "sim"
-    # The simulator you want to use in the 'Simulation branch' [Pybullet-ROS | Sapien-ROS]
+    # The simulator you want to use in the 'Simulation branch' [Pybullet-ROS | Mujoco-Gym]
     simulator: "Pybullet-ROS"    # Not available for 'Real Robot branch'
     # Which part of the baseline solution was modified to create this solution? The evalution result will be shown in different tracks.
     # modified_perception == True, modified_planning == True, Main track only
