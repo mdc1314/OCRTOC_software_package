@@ -271,7 +271,9 @@ However, you should **NEVER READ THE OBJECT 6D POSES DIRECTLY FROM SIMULATION IN
 The OCRTOC for Mujoco user is built upon Gymnasium. The general framework of challenge consists of two compoents, i.e. Agent and Env. You should build an agent `MyAgent` to interacts with ocrtoc environment. We provide a base class AgentBase with some variable. You can inherit the base class to your class MyAgent and implement your onw method in the `ocrtoc_gym/ocrtoc_agent/agent_builder.py` file. You can change parameters in `agent_config.yml` and run this script for testing process. 
 ```bash
 # In the terminal
-Python3 run.py
+bash tools/exec_container.sh
+cd /root/ocrtoc_ws/ocrtoc_gym
+python3 run.py
 ```
 
 
