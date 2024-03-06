@@ -300,7 +300,7 @@ The task score will be printed in the terminal and also saved to `ocrtoc_task/ev
 ### Mujoco 
 Each time you run `ocrtoc_gym/run.py` script, your agent will be automatically evaluated. The score will be written into `ocrtoc_gym/ocrtov_env/result` folder. Besides, you can check details for specific tasks in `ocrtoc_gym/ocrtov_env/evaluation` folder. 
 
-In the qualifying phase, we will overwrite `ocrtoc_gym/ocrtov_env` folder. Please **do not write your code into this folder**. And we will overwrite existing parameters in  `agent_config.yml`. Please add your parameters below these existing parameters.
+In the qualifying phase, we will overwrite `ocrtoc_gym/ocrtov_env` folder. Please **only write your code into `ocrtoc_gym/ocrtoc_agent` folder**. And we will overwrite existing parameters in  `agent_config.yml`. Please add your parameters below these existing parameters.
 
 ## Submission
 
