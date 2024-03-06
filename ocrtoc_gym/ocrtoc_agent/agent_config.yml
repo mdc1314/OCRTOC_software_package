@@ -33,8 +33,7 @@ debug: False # If render is true and debug is true, there will be transparent ta
 IoU_threshold: 0.6 # Threshold of Intersection over Union for current and target bounding boxes, the IoU above this value is seen as success
 
 
-# Agent Parameters
-# You can specify your own parameters here, they will be passed to the init of your Agent
+# Transformation
 world_to_panda: [-0.42,0.0 ,0.0, 0 ,0 ,0]   # panda link0 w.r.t to world
 realsense1_to_panda_hand: [0.051, -0.019, 0.059, 0, 0, -1.57] # realsense w.r.t panda hand
 realsense1_to_panda: [1.016,0.006, 0.8,-3.142,-0.699, 1.571] #realsense2 w.r.t panda link0 
@@ -43,3 +42,8 @@ realsense_to_realsense_link: [0.0149, 0.0175, 0.0125, 0, 0 ,0] # realsense link 
 realsense_link_to_rgb: [0.015, 0.0, 0.0 ,0 ,3.14, 0] # rgb optical frame to realsense link
 realsense_link_to_depth: [0.0, 0.0, 0.0 ,0 , 0, 0] # depth optical frame to realsense link
 realsense_fovy: 45 
+realsense_width: 1280
+realsense_height: 720
+
+# Agent Parameters
+# You can specify your own parameters here, they will be passed to the init of your Agent
