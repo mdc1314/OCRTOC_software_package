@@ -66,12 +66,7 @@ docker pull ocrtoc/ocrtoc2024_mujoco:latest
 - ceres-solver 2.0
 - colmap 3.7
 - pycolmap 0.5.0
-- Sapien (pre-build version)
 - open3d==0.12.0 for python3
-- assimp v5.0.1
-- glm 0.9.9.8
-- glfw 3.3.3
-- spdlog v1.8.5
 
 #### Docker image for Mujoco user
 - Operating System: Ubuntu 20.04
