@@ -1,4 +1,4 @@
-from nvidia/cuda:12.4.1-devel-ubuntu22.04
+from nvidia/cuda:12.0.0-devel-ubuntu22.04
 
 ENV TZ=Asia/Shanghai
 ENV NVIDIA_VISIBLE_DEVICES all
