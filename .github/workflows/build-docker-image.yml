@@ -23,13 +23,14 @@ jobs:
       run: |
         BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
         DOCKER_TAG= echo "$BRANCH" | sed 's#/#_#g'
-        docker build -f docker/Dockerfile -t ocrtoc/ocrtoc2024_mujoco:latest .
+        echo "Tag image as [$DOCKER_TAG]"
+        docker build -f docker/Dockerfile -t ocrtoc/ocrtoc2024_mujoco:$DOCKER_TAG .
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Push Dockerhub
-      if: github.ref == 'refs/heads/master'
       run: |             
-        docker push ocrtoc/ocrtoc2024_mujoco:latest
+        docker push ocrtoc/ocrtoc2024_mujoco:$DOCKER_TAG
+      
