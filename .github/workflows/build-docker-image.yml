@@ -22,7 +22,7 @@ jobs:
         echo "GITHUB_HEAD_REF  [$GITHUB_HEAD_REF]"
         echo "GITHUB_REF       [$GITHUB_REF]"
         echo "GITHUB_REF_NAME  [$GITHUB_REF_NAME]"
-        DOCKER_TAG= $GITHUB_REF_NAME
+        DOCKER_TAG="$GITHUB_REF_NAME"
         echo "Tag image as [$DOCKER_TAG]"
         docker build -f docker/Dockerfile -t ocrtoc/ocrtoc2024_mujoco:$DOCKER_TAG .
     - name: Log in to Docker Hub
