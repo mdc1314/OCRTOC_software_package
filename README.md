@@ -43,7 +43,7 @@ docker pull ocrtoc/ocrtoc2024_mujoco:latest
 - MuJoCo 2.3.3
 - gymnasium 0.29.1
 
-### Start Docker
+### Start docker container
 We provide two scripts for creating and executing the docker image. Please modify the **name** and **path** in the scripts according to your own needs.
 ```bash
 # Create docker container with the provided image
@@ -61,7 +61,7 @@ bash tools/start_container.sh
 bash tools/exec_container.sh
 ```
 
-#### Setup simulation assets
+### Setup simulation assets
 You need to run the following commands to download required assets to run the simulation. It is not necessary to run these commands again when you restart the docker container.
 
 ```bash
