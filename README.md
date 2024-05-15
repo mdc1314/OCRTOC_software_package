@@ -3,13 +3,13 @@
 ![](docs/logo.png)
 
 ## Overview
-This is the OCRTOC software package. The homepage for OCRTOC is: [www.ocrtoc.org](http://www.ocrtoc.org). A brief video introduction of the previous OCRTOC challenge is available on [Youtube](https://www.youtube.com/watch?v=9dlWUbPF2Cc&t=1s) and [BiliBili](https://www.bilibili.com/video/BV1MV411W7aa/).
+This is the OCRTOC software package. The homepage for OCRTOC is: [www.ocrtoc.org](http://www.ocrtoc.org). A brief video introduction, showcasing highlights from the previous OCRTOC challenge, is available on [Youtube](https://www.youtube.com/watch?v=9dlWUbPF2Cc&t=1s) and [BiliBili](https://www.bilibili.com/video/BV1MV411W7aa/).
 
 To take part in OCRTOC 2024, you need to develop your own solution using this software package. After uploading your solution to the competition platform, the performance of your solution will be evaluated. 
  
 
 ## Set up Environment
-In order for your solution to be executable both on your local machine and our competition platform, we provide you a docker image with some pre-installed software. You need to develop and test your solution within this docker image. To set up the environment, you can use the pre-built docker image. The following instructions provide more details.
+In order for your solution to be executable both on your local machine and our competition platform, we provide you with a docker image with some pre-installed software. You need to develop and test your solution within this docker image. To set up the environment, you can use the pre-built docker image. The following instructions provide more details.
 
 ### System Requirement
 - The software package must run on a computer with a NVIDIA GPU.
@@ -52,9 +52,7 @@ bash tools/create_container.sh ocrtoc/ocrtoc2024_mujoco:latest
 # Enter the docker container
 bash tools/exec_container.sh
 ```
-
-When your host operating system restarts, the docker will not restart automatically.
-We also provide another script for you to restart the docker.
+Please note that the docker container will not restart automatically if your host operating system restarts. We also provide another script for you to restart the docker container.
 ```bash
 # Restart docker container
 bash tools/start_container.sh
@@ -64,7 +62,7 @@ bash tools/exec_container.sh
 ```
 
 #### Setup simulation assets
-You need to run the following commands to download required assets to run the simulation. It is not necessary to run them when you restart the docker container. 
+You need to run the following commands to download required assets to run the simulation. It is not necessary to run these commands again when you restart the docker container.
 
 ```bash
 # Enter the docker container
@@ -105,15 +103,15 @@ m -> task done
 
 
 ### Object 6D Poses in Simulation
-For debugging purposes, you can read the object 6D poses from the simulation 
+For debugging purposes, you can read the object 6D poses from the simulation.
 However, you should **NEVER READ THE OBJECT 6D POSES DIRECTLY FROM SIMULATION IN YOUR SOLUTION**. Violation of the rule will result in invalid scores. 
 
 ### Challenge framework 
-The OCRTOC for the MuJoCo simulation is built upon Gymnasium. The general framework of challenge consists of two components: an Agent (`ocrtoc_agent`) and a set of environment (`ocrtoc_env`). You should re-implement the agent named `MyAgent` located in `ocrtoc_agent\agent_builder.py`. You can change parameters in `agent_config.yml` to change task ID or object categories. 
+The OCRTOC for the MuJoCo simulation is built upon Gymnasium. The general framework of challenge consists of two components: an Agent (`ocrtoc_agent`) and a set of environment (`ocrtoc_env`). You should re-implement the agent named `MyAgent` located in `ocrtoc_agent/agent_builder.py`. You can change parameters in `agent_config.yml` to change task ID or object categories. 
 
 
 ## Evaluation
-The `run.py` is the entry point of evaluation. Each time you run `ocrtoc_gym/run.py` script, your agent will be automatically evaluated. The score will be written into `ocrtoc_gym/ocrtov_env/result` folder. Besides, you can check evaluation result of a specific task in the `ocrtoc_gym/ocrtov_env/evaluation` folder. 
+The `run.py` is the entry point of evaluation. Each time you run `ocrtoc_gym/run.py` script, your agent will be automatically evaluated. The score will be written into `ocrtoc_gym/ocrtoc_env/result` folder. Besides, you can check evaluation result of a specific task in the `ocrtoc_gym/ocrtoc_env/evaluation` folder. 
 
 In our evaluation server, we will overwrite the `ocrtoc_gym/ocrtov_env` folder and modify the task parameters in the `agent_config.yml` file. So please make sure To implement your solution in the `ocrtoc_gym/ocrtoc_agent` folder.
 
@@ -122,7 +120,7 @@ In our evaluation server, we will overwrite the `ocrtoc_gym/ocrtov_env` folder a
 ### Prepare the Docker Image
 After you have finished developing your solution, you need to upload the entire docker image for submission. 
 
-Normally, the `/root/ocrtoc_ws` directory is mounted in the docker image using `-v` flag which makes it easier for software development. However, if you commit you docker image directly, the files will not be saved in the docker image. The solution to this problem is that you should first umount the directory and copy it into the docker image as shown below.
+Normally, the `/root/ocrtoc_ws` directory is mounted in the docker image using `-v` flag which makes it easier for software development. However, if you commit your docker image directly, the files will not be saved in the docker image. The solution to this problem is that you should first umount the directory and copy it into the docker image as shown below.
 
 1. Copy the Files into the Docker Image
 ```bash
