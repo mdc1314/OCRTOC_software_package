@@ -25,23 +25,15 @@ There are some submodules in the software package, and you need to clone the rep
 git clone https://github.com/OCRTOC/OCRTOC_software_package --recursive
 ```
 
-or
 
-```bash
-git clone https://github.com/OCRTOC/OCRTOC_software_package
-cd OCRTOC_software_package
-git submodule update --init --recursive
-```
-
-### Pull docker image
+### Pull docker image (***********************image name)
 ```bash
 docker pull ocrtoc/ocrtoc2024_mujoco:latest
 ```
-### Content of the Docker Image
-#### Docker image for Pybullet user
-- Operating System: Ubuntu 20.04
-- CUDA 12.3
-- MuJoCo 2.3.3
+#### Content of the Docker Image
+- Operating System: Ubuntu 22.04
+- CUDA 12.0
+- MuJoCo 3.1.3
 - gymnasium 0.29.1
 
 ### Start docker container
@@ -92,24 +84,17 @@ a -> +y
 d -> -y 
 q -> +z 
 e -> -z
-y -> +yaw
-x -> -yaw
+y -> +roll
+x -> -roll
+1 -> +pitch
+2 -> -pitch
+3 -> +yaw
+4 -> -yaw
 o -> open gripper
 c -> close gripper 
 m -> task done
 ```
 
-
-### Mujoco
-We provide a solution using keyboard to control the robot. In the following we show how to run it in the Mujoco simulator on your local machine.
-```bash
-# Enter the docker container
-bash tools/exec_container.sh
-
-## In the docker image
-cd /root/ocrtoc_ws/ocrtoc_gym
-python3 run.py
-```
 
 ## Build Your Own Solution
 
@@ -119,8 +104,7 @@ For debugging purposes, you can read the object 6D poses from the simulation.
 However, you should **NEVER READ THE OBJECT 6D POSES DIRECTLY FROM SIMULATION IN YOUR SOLUTION**. Violation of the rule will result in invalid scores. 
 
 ### Challenge framework 
-The OCRTOC for the MuJoCo simulation is built upon Gymnasium. The general framework of challenge consists of two components: an Agent (`ocrtoc_agent`) and a set of environment (`ocrtoc_env`). You should re-implement the agent named `MyAgent` located in `ocrtoc_agent/agent_builder.py`. You can change parameters in `agent_config.yml` to change task ID or object categories. 
-
+The OCRTOC for the MuJoCo simulation is built upon Gymnasium. The general framework of challenge consists of two components: an Agent (`ocrtoc_agent`) and a set of environment (`ocrtoc_env`). You should re-implement the agent named `MyAgent` located in `ocrtoc_agent/agent_builder.py`. You can change parameters in `agent_config.yml` to change task ID or object categories. To test language conditioned rearrangement tasks, set parameter as `"language"`. To test language conditioned rearrangement tasks, set parameter as `"pose"`.  
 
 ## Evaluation
 The `run.py` is the entry point of evaluation. Each time you run `ocrtoc_gym/run.py` script, your agent will be automatically evaluated. The score will be written into `ocrtoc_gym/ocrtoc_env/result` folder. Besides, you can check evaluation result of a specific task in the `ocrtoc_gym/ocrtoc_env/evaluation` folder. 
