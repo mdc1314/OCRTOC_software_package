@@ -29,16 +29,16 @@ n_cores: 1 # How many cores will be used, -1 takes all cores and 1 will not para
 tasks_type: "language" # specify task type, "pose" and "language"
 
 ####################### Pose Conditioned Tasks ####################################
-env: ["0_0"] # What environments are evaluated can specify multiple environments
+env: ["1_1_1"] # What environments are evaluated can specify multiple environments
 debug: True # If render is true and debug is true, there will be transparent target objects on GUI. In Evaluation process , current and target bounding boxes will be drawn
 # Evaluation paramter
 IoU_threshold: 0.6 # Threshold of Intersection over Union for current and target bounding boxes, the IoU above this value is seen as success
 
 ####################### Language Conditioned Tasks ####################################
-object_category: 1    ## How many categories of object in the env [1,6] 
+object_category: 3    ## How many categories of object in the env [1,6] 
 object_max_num: 1  ## Max number of each object  [1,4] 
 overlap: True      ## If objects can be overlapped to each other
-object_class: "fruit" ## object class, "tool" , "fruit", or "grocery"
+object_class: "grocery" ## object class, "tool" , "fruit", or "grocery"
 
 ####################### Model parameters ####################################
 # Transformation (euler is intrinsic order xyz)
