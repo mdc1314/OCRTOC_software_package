@@ -1,9 +1,6 @@
 import os
 import yaml
 import numpy as np
-from itertools import permutations
-import matplotlib.pyplot as plt
-import math
 import mujoco
 T_MAX = 120 #MAX time allowed for a task
 
