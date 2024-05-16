@@ -134,7 +134,7 @@ def sense_generate(objects,objects_num,overlap,object_class):
     euler = [0,0,0] #box euler
     k = 1
     for item in object_selected:
-        tree_include_worldbody_body =  ET.SubElement(tree_include_worldbody, 'body',{'name':item+'_box__1', 'pos':list_to_string(pos), 'euler':list_to_string(euler)})
+        tree_include_worldbody_body =  ET.SubElement(tree_include_worldbody, 'body',{'name':'box_'+item+'__0', 'pos':list_to_string(pos), 'euler':list_to_string(euler)})
         rotation = Rotation.from_euler('XYZ', euler, degrees=False)
         q = rotation.as_quat()
         init_pos.append(pos[0])
