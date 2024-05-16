@@ -72,7 +72,7 @@ def _evaluate(env,  init_states, render, IoU_threshold, debug,**kwargs):
         observation, info = gym_env.reset()
         start_time = time()
 
-        for _ in range(60000):
+        for _ in range(6000):
             action, success= my_agent.draw_action(observation)
             observation, _ , _, _ ,_ = gym_env.step(action)
             if success:
