@@ -117,7 +117,7 @@ def sense_generate(objects,objects_num,overlap,object_class):
                 init_pos.append(q[2])
 
                 # tree_include_worldbody_body_inertial =  ET.SubElement(tree_include_worldbody_body, 'freejoint')
-                tree_include_worldbody_body_inertial =  ET.SubElement(tree_include_worldbody_body, 'joint',{'type':'free','damping':'1.0','armature':'1.0'})
+                tree_include_worldbody_body_inertial =  ET.SubElement(tree_include_worldbody_body, 'joint',{'type':'free','damping':'0.05','armature':'0.05'})
                 # tree_include_worldbody_body_inertial =  ET.SubElement(tree_include_worldbody_body, 'inertial',{'pos':'0 0 0', 'mass':'0.1', 'fullinertia':'1 1 1 0 0 0'})
                 model_folder = src_model + item
                 for file in os.listdir(model_folder):
@@ -153,7 +153,7 @@ def sense_generate(objects,objects_num,overlap,object_class):
             pos[0] = pos[0] - box_offset
         k+=1
         # tree_include_worldbody_body_inertial =  ET.SubElement(tree_include_worldbody_body, 'freejoint')
-        tree_include_worldbody_body_inertial =  ET.SubElement(tree_include_worldbody_body, 'joint',{'type':'free','damping':'1.0','armature':'1.0'})
+        tree_include_worldbody_body_inertial =  ET.SubElement(tree_include_worldbody_body, 'joint',{'type':'free','damping':'0.05','armature':'0.05'})
         # tree_include_worldbody_body_inertial =  ET.SubElement(tree_include_worldbody_body, 'inertial',{'pos':'0 0 0', 'mass':'0.1', 'fullinertia':'1 1 1 0 0 0'})
         model_folder = src_model + box_name
         for file in os.listdir(model_folder):
