@@ -13,7 +13,7 @@ class FrankaEnv(gym.Env):
     metadata = {"render_modes": ["human", "rgb_array"]}
     def __init__(
         self,
-        model_path: str = "/home/zhen/OCRTOC_software_package/ocrtoc_materials_mujoco/scenes/1-1-1.xml",
+        model_path: str = "./OCRTOC_software_package/ocrtoc_materials_mujoco/scenes/1-1-1.xml",
         n_substeps: int = 50,
         render_mode = None,
         **kwargs,
