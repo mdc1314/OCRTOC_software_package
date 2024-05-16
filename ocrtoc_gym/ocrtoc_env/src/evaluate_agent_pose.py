@@ -4,7 +4,7 @@ import numpy as np
 from joblib import Parallel, delayed
 import gymnasium as gym
 from ocrtoc_agent.agent_builder import MyAgent
-from ocrtoc_env.src.compute_score import ScoreCalculator
+from ocrtoc_env.src.compute_score_pose import ScoreCalculator
 from time import time
 
 def evaluate(env_list, n_episodes=1080, n_cores=-1, render=False, IoU_threshold=0.8, debug = False, **kwargs):
