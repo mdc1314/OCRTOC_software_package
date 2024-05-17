@@ -26,7 +26,7 @@ git clone https://github.com/OCRTOC/OCRTOC_software_package --recursive
 ```
 
 
-### Pull docker image (***********************image name)
+### Pull docker image 
 ```bash
 docker pull ocrtoc/ocrtoc2024_mujoco:latest
 ```
@@ -67,7 +67,7 @@ bash tools/setup_env_mujoco.sh
 ```
 
 ### Sample solution using keyboard control
-Now you have finished setting up the environment, and you can try to run the simulation and control the robot using keyboard. We provide a sample solution using keyboard to control the robot. In the following we show how to run the keyboard controller on your local machine.
+Now you have finished setting up the environment, and you can try to run the simulation and control the robot using keyboard. We provide a sample solution using keyboard to control the robot. In the following we show how to run the keyboard controller on your local machine. 
 ```bash
 # Enter the docker container
 bash tools/exec_container.sh
@@ -76,6 +76,7 @@ bash tools/exec_container.sh
 cd /root/ocrtoc_ws/ocrtoc_gym
 python3 run.py
 ```
+The MuJoCo simulator will now launch and begin running. You can control the robot by entering control commands in the terminal.
 ```
 Keyboard control mapping 
 w -> +x 
@@ -95,7 +96,6 @@ c -> close gripper
 m -> task done
 ```
 
-
 ## Build Your Own Solution
 
 
@@ -104,8 +104,8 @@ For debugging purposes, you can read the object 6D poses from the simulation.
 However, you should **NEVER READ THE OBJECT 6D POSES DIRECTLY FROM SIMULATION IN YOUR SOLUTION**. Violation of the rule will result in invalid scores. 
 
 ### Challenge framework 
-The OCRTOC for the MuJoCo simulation is built upon Gymnasium. The general framework of challenge consists of two components: an Agent (`ocrtoc_agent`) and a set of environment (`ocrtoc_env`). You should re-implement the agent named `MyAgent` located in `ocrtoc_agent/agent_builder.py`. You can change parameters in `agent_config.yml` to change task ID or object categories. To test language conditioned rearrangement tasks, set parameter as `"language"`. To test language conditioned rearrangement tasks, set parameter as `"pose"`.  
-
+The OCRTOC for the MuJoCo simulation is built upon Gymnasium. The general framework of challenge consists of two components: an Agent (`ocrtoc_agent`) and a set of environment (`ocrtoc_env`). You should re-implement the agent named `MyAgent` located in `ocrtoc_agent/agent_builder.py`. You can change parameters in `agent_config.yml` to change tasks or object categories. For evaluating language conditioned rearrangement tasks, set parameter `tasks_type` to `language`. Similarly, for pose conditioned rearrangement tasks, set parameter `tasks_type` to `pose`.
+ 
 ## Evaluation
 The `run.py` is the entry point of evaluation. Each time you run `ocrtoc_gym/run.py` script, your agent will be automatically evaluated. The score will be written into `ocrtoc_gym/ocrtoc_env/result` folder. Besides, you can check evaluation result of a specific task in the `ocrtoc_gym/ocrtoc_env/evaluation` folder. 
 
@@ -139,7 +139,6 @@ cd ocrtoc_ws
 # Export a docker image using the docker container.
 docker commit ocrtoc your_submission_docker_image_name # ocrtoc is the container name. Make changes according to your needs.
 ```
-
 
 ### Final Submission
 The participants will be informed by email how to submit your own docker image.
