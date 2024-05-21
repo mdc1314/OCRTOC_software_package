@@ -26,9 +26,9 @@ git clone https://github.com/OCRTOC/OCRTOC_software_package --recursive
 ```
 
 
-### Pull docker image 
+### Pull the lateset docker image (Check CI for the latest version.)
 ```bash
-docker pull ocrtoc/ocrtoc2024_mujoco:latest
+docker pull ocrtoc/ocrtoc2024_mujoco:v3.0
 ```
 #### Content of the Docker Image
 - Operating System: Ubuntu 22.04
@@ -40,7 +40,7 @@ docker pull ocrtoc/ocrtoc2024_mujoco:latest
 We provide two scripts for creating and executing the docker image. Please modify the **name** and **path** in the scripts according to your own needs.
 ```bash
 # Create docker container with the provided image
-bash tools/create_container.sh ocrtoc/ocrtoc2024_mujoco:latest
+bash tools/create_container.sh ocrtoc/ocrtoc2024_mujoco:v3.0
 
 # Enter the docker container
 bash tools/exec_container.sh
