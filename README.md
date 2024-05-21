@@ -104,8 +104,9 @@ For debugging purposes, you can read the object 6D poses from the simulation.
 However, you should **NEVER READ THE OBJECT 6D POSES DIRECTLY FROM SIMULATION IN YOUR SOLUTION**. Violation of the rule will result in invalid scores. 
 
 ### Challenge framework 
-The OCRTOC for the MuJoCo simulation is built upon Gymnasium. The general framework of challenge consists of two components: an Agent (`ocrtoc_agent`) and a set of environment (`ocrtoc_env`). You should re-implement the agent named `MyAgent` located in `ocrtoc_agent/agent_builder.py`. You can change parameters in `agent_config.yml` to change tasks or object categories. For evaluating language conditioned rearrangement tasks, set parameter `tasks_type` to `language`. Similarly, for pose conditioned rearrangement tasks, set parameter `tasks_type` to `pose`.
- 
+The OCRTOC for the MuJoCo simulation is built upon Gymnasium. The general framework of challenge consists of two components: an Agent (`ocrtoc_agent`) and a set of environment (`ocrtoc_env`). You should re-implement the agent named `MyAgent` located in `ocrtoc_agent/agent_builder.py`. You can change parameters in `agent_config.yml` to change task ID or object categories. 
+
+
 ## Evaluation
 The `run.py` is the entry point of evaluation. Each time you run `ocrtoc_gym/run.py` script, your agent will be automatically evaluated. The score will be written into `ocrtoc_gym/ocrtoc_env/result` folder. Besides, you can check evaluation result of a specific task in the `ocrtoc_gym/ocrtoc_env/evaluation` folder. 
 
