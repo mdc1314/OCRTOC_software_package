@@ -40,7 +40,8 @@ def evaluate(object_category,object_max_num,overlap,object_class, n_episodes=108
     log_file_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'result')
     if not os.path.exists(log_file_dir):
         os.makedirs(log_file_dir)
-    f = open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'result', datetime.datetime.now().strftime('eval-%Y-%m-%d_%H-%M-%S.txt')), "a")
+    f = open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'result', datetime.datetime.now().strftime('eval-%Y-%m-%d_%H-%M-%S.txt')), "w")
+
     for chunks in env_init_chuncks:
         # evaluate 
         data= Parallel(n_jobs=n_cores)(delayed(_evaluate)(chunks[i],  render,  **kwargs) for i in range(n_cores))
@@ -50,7 +51,6 @@ def evaluate(object_category,object_max_num,overlap,object_class, n_episodes=108
         f.write("OCROTC task: LANGUAGE average score in " + str(n_episodes) + " episodes is " + str(average_score))
         f.write("\n")
     f.close()
-   
 
 
 def _evaluate(init_states, render,**kwargs):
